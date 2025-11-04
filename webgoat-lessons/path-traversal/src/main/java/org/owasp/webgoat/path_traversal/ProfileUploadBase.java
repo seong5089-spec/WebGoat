@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Base64;
+import org.apache.commons.io.FilenameUtils;
 
 @AllArgsConstructor
 public class ProfileUploadBase extends AssignmentEndpoint {
@@ -38,7 +39,7 @@ public class ProfileUploadBase extends AssignmentEndpoint {
 
         try {
             uploadDirectory.mkdirs();
-            var uploadedFile = new File(uploadDirectory, fullName);
+            var uploadedFile = new File(uploadDirectory, FilenameUtils.getName(fullName));
             uploadedFile.createNewFile();
             FileCopyUtils.copy(file.getBytes(), uploadedFile);
 

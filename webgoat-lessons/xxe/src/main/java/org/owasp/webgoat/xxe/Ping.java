@@ -44,6 +44,7 @@ public class Ping {
     @ResponseBody
     public String logRequest(@RequestHeader("User-Agent") String userAgent, @RequestParam(required = false) String text) {
         String logLine = String.format("%s %s %s", "GET", userAgent, text);
+        logLine=logLine.replaceAll("\r","").replaceAll("\n","");
         log.debug(logLine);
         File logFile = new File(webGoatHomeDirectory, "/XXE/log" + webSession.getUserName() + ".txt");
         try {

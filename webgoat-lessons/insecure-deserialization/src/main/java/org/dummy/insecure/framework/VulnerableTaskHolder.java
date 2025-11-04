@@ -40,6 +40,7 @@ public class VulnerableTaskHolder implements Serializable {
 		stream.defaultReadObject();
 		
 		//do something with the data
+        taskName = taskName.replaceAll("\r","").replaceAll("\n","");
 		log.info("restoring task: {}", taskName);
 		log.info("restoring time: {}", requestedExecutionTime);
 		
@@ -61,6 +62,8 @@ public class VulnerableTaskHolder implements Serializable {
                                 new InputStreamReader(p.getInputStream()));
             String line = null;
             while ((line = in.readLine()) != null) {
+
+                line=line.replaceAll("\r","").replaceAll("\n","");
                 log.info(line);
             }
         } catch (IOException e) {
